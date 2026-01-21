@@ -1,8 +1,8 @@
 'use client'
 
-import { Task } from '@/lib/types'
-import Card from '@/components/ui/card'
-import Badge from '@/components/ui/badge'
+import { Task } from '@lib/types'
+import Card from '@components/ui/card'
+import Badge from '@components/ui/badge'
 import { Clock, CheckCircle2, Circle } from 'lucide-react'
 
 export interface ExecutionTaskCardProps {

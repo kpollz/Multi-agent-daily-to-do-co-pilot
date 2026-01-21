@@ -1,7 +1,7 @@
 'use client'
 
-import { Task } from '@/lib/types'
-import Card from '@/components/ui/card'
+import { Task } from '@lib/types'
+import Card from '@components/ui/card'
 import { Clock, Edit3, Trash2 } from 'lucide-react'
 import { motion } from 'framer-motion'
 

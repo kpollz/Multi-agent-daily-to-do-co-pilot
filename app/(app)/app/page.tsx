@@ -4,12 +4,12 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
 import { Sparkles, Calendar } from 'lucide-react'
-import Textarea from '@/components/ui/textarea'
-import Button from '@/components/ui/button'
-import LoadingSpinner from '@/components/ui/loading-spinner'
-import { getPlan } from '@/lib/mock'
-import { useApp } from '@/contexts/app-context'
-import { Task } from '@/lib/types'
+import Textarea from '@components/ui/textarea'
+import Button from '@components/ui/button'
+import LoadingSpinner from '@components/ui/loading-spinner'
+import { getPlan } from '@lib/mock'
+import { useApp } from '@contexts/app-context'
+import { Task } from '@lib/types'
 
 export default function IntentionPage() {
   const router = useRouter()

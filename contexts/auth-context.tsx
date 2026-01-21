@@ -1,8 +1,8 @@
 'use client'
 
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react'
-import { Session } from '@/lib/types'
-import { getCurrentSession } from '@/lib/mock'
+import { Session } from '@lib/types'
+import { getCurrentSession } from '@lib/mock'
 
 interface AuthContextType {
   session: Session | null

@@ -3,9 +3,9 @@
 import { ReactNode } from 'react'
 import { motion } from 'framer-motion'
 import { LogOut, User } from 'lucide-react'
-import { useAuth } from '@/contexts/auth-context'
+import { useAuth } from '@contexts/auth-context'
 import { useRouter } from 'next/navigation'
-import Button from '@/components/ui/button'
+import Button from '@components/ui/button'
 
 interface AppLayoutProps {
   children: ReactNode

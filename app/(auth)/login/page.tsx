@@ -4,10 +4,10 @@ import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { motion } from 'framer-motion'
 import { Sparkles } from 'lucide-react'
-import Input from '@/components/ui/input'
-import Button from '@/components/ui/button'
-import { login } from '@/lib/mock'
-import { useAuth } from '@/contexts/auth-context'
+import Input from '@components/ui/input'
+import Button from '@components/ui/button'
+import { login } from '@lib/mock'
+import { useAuth } from '@contexts/auth-context'
 
 export default function LoginPage() {
   const router = useRouter()

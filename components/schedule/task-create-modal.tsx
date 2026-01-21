@@ -1,11 +1,11 @@
 'use client'
 
 import { useState } from 'react'
-import { Task } from '@/lib/types'
-import Modal from '@/components/ui/modal'
-import Input from '@/components/ui/input'
-import Textarea from '@/components/ui/textarea'
-import Button from '@/components/ui/button'
+import { Task } from '@lib/types'
+import Modal from '@components/ui/modal'
+import Input from '@components/ui/input'
+import Textarea from '@components/ui/textarea'
+import Button from '@components/ui/button'
 
 export interface TaskCreateModalProps {
   isOpen: boolean

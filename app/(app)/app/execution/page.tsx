@@ -4,11 +4,11 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { CheckCircle2, RotateCcw, ArrowRight, Trophy } from 'lucide-react'
-import Button from '@/components/ui/button'
-import ExecutionTaskCard from '@/components/execution/execution-task-card'
-import { useApp } from '@/contexts/app-context'
-import { getClientCurrentTime } from '@/lib/mock'
-import { Task } from '@/lib/types'
+import Button from '@components/ui/button'
+import ExecutionTaskCard from '@components/execution/execution-task-card'
+import { useApp } from '@contexts/app-context'
+import { getClientCurrentTime } from '@lib/mock'
+import { Task } from '@lib/types'
 
 export default function ExecutionPage() {
   const router = useRouter()

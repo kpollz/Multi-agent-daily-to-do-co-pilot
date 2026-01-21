@@ -1,7 +1,7 @@
 'use client'
 
 import { createContext, useContext, useState, ReactNode } from 'react'
-import { Task, AppPhase } from '@/lib/types'
+import { Task, AppPhase } from '@lib/types'
 
 interface AppContextType {
   phase: AppPhase

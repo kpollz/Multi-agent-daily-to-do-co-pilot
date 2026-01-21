@@ -21,12 +21,12 @@ import {
 } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
 import { Plus, ArrowRight, Sparkles } from 'lucide-react'
-import Button from '@/components/ui/button'
-import TaskCard from '@/components/schedule/task-card'
-import TaskEditModal from '@/components/schedule/task-edit-modal'
-import TaskCreateModal from '@/components/schedule/task-create-modal'
-import { useApp } from '@/contexts/app-context'
-import { Task } from '@/lib/types'
+import Button from '@components/ui/button'
+import TaskCard from '@components/schedule/task-card'
+import TaskEditModal from '@components/schedule/task-edit-modal'
+import TaskCreateModal from '@components/schedule/task-create-modal'
+import { useApp } from '@contexts/app-context'
+import { Task } from '@lib/types'
 
 function SortableTaskCard({ task, onEdit, onDelete }: { task: Task; onEdit: (task: Task) => void; onDelete: (id: string) => void }) {
   const {
