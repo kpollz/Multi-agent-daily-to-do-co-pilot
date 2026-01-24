@@ -139,7 +139,7 @@ export default function ExecutionPage() {
             <Trophy className="h-16 w-16 text-success mx-auto mb-4" />
             <h2 className="text-2xl font-bold text-text mb-2">Congratulations! 🎉</h2>
             <p className="text-textSecondary mb-6">
-              You've completed all your tasks for today. Great job staying focused and productive!
+              You&apos;ve completed all your tasks for today. Great job staying focused and productive!
             </p>
             <div className="flex items-center justify-center space-x-4">
               <Button size="lg" onClick={handleStartNewDay}>

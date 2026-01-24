@@ -9,7 +9,7 @@ import Button from '@components/ui/button'
 import LoadingSpinner from '@components/ui/loading-spinner'
 import { getPlan } from '@lib/mock'
 import { useApp } from '@contexts/app-context'
-import { Task } from '@lib/types'
+// import { Task } from '@lib/types'
 
 export default function IntentionPage() {
   const router = useRouter()
