@@ -36,7 +36,7 @@ export function LoginComponent() {
       await login(username, password);
       // Redirect to dashboard or home page
       // router.push("/app");
-    } catch (err) {
+    } catch {
       setLocalError(error || "Login failed");
     }
   };
@@ -125,7 +125,7 @@ export function SignupComponent() {
       await signup(email, username, password);
       // Redirect to login or dashboard
       // router.push("/login");
-    } catch (err) {
+    } catch {
       setLocalError(error || "Signup failed");
     }
   };
@@ -290,7 +290,7 @@ export function LoginPage() {
         <h1 className="text-2xl font-bold mb-6">Login</h1>
         <LoginComponent />
         <p className="mt-4 text-center">
-          Don't have an account? <a href="/signup" className="text-blue-600">Sign up</a>
+          Don&apos;t have an account? <a href="/signup" className="text-blue-600">Sign up</a>
         </p>
       </div>
     </div>

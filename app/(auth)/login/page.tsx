@@ -91,7 +91,7 @@ export default function LoginPage() {
           </div>
           
           <p className="text-center text-sm text-textSecondary mt-6">
-            Don't have an account? <a href="/signup" className="text-primary hover:underline">Sign up</a>
+            Don&apos;t have an account? <a href="/signup" className="text-primary hover:underline">Sign up</a>
           </p>
         </motion.div>
       </motion.div>
