@@ -6,10 +6,10 @@ const nextConfig = {
   webpack: (config) => {
     const projectRoot = path.resolve(process.cwd())
     
-    // Get existing aliases
+    // Configure aliases to match TypeScript paths
+    // Always preserve existing aliases first
     const existingAlias = config.resolve.alias || {}
     
-    // Configure aliases - must match TypeScript paths exactly
     config.resolve.alias = {
       ...existingAlias,
       '@': projectRoot,
@@ -17,18 +17,6 @@ const nextConfig = {
       '@lib': path.resolve(projectRoot, 'lib'),
       '@contexts': path.resolve(projectRoot, 'contexts'),
     }
-    
-    // Ensure extensions are resolved (important for .ts/.tsx files)
-    if (!config.resolve.extensions) {
-      config.resolve.extensions = []
-    }
-    
-    // Prepend our extensions to ensure they're checked first
-    const defaultExtensions = ['.tsx', '.ts', '.jsx', '.js', '.json']
-    const existingExtensions = config.resolve.extensions.filter(
-      (ext) => !defaultExtensions.includes(ext)
-    )
-    config.resolve.extensions = [...defaultExtensions, ...existingExtensions]
     
     return config
   },
