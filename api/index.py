@@ -17,7 +17,7 @@ load_dotenv(".env.local")
 # Create database tables
 Base.metadata.create_all(bind=engine)
 
-app = FastAPI(title="Multi-Agent Daily To-Do Co-pilot API")
+app = FastAPI(title="Multi-Agent Daily To-Do Co-pilot API", version="1.0.0")
 
 # CORS middleware
 app.add_middleware(
