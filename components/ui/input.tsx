@@ -10,6 +10,21 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
   ({ label, error, className, id, ...props }, ref) => {
     const inputId = id || `input-${Math.random().toString(36).substr(2, 9)}`
     
+    // Remove props that conflict with Framer Motion
+    const {
+      onDrag,
+      onDragStart,
+      onDragEnd,
+      onDragEnter,
+      onDragExit,
+      onDragLeave,
+      onDragOver,
+      onAnimationStart,
+      onAnimationEnd,
+      onAnimationIteration,
+      ...htmlProps
+    } = props
+    
     return (
       <div className="w-full">
         {label && (
@@ -22,7 +37,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
           id={inputId}
           className={`w-full px-4 py-2.5 bg-surface border border-border rounded-lg text-text placeholder-textSecondary focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all duration-200 ${error ? 'border-danger' : ''} ${className}`}
           whileFocus={{ scale: 1.01 }}
-          {...props}
+          {...htmlProps}
         />
         {error && (
           <motion.p

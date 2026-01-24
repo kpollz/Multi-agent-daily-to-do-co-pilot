@@ -26,6 +26,21 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       lg: 'px-6 py-3 text-base',
     }
     
+    // Remove props that conflict with Framer Motion
+    const {
+      onDrag,
+      onDragStart,
+      onDragEnd,
+      onDragEnter,
+      onDragExit,
+      onDragLeave,
+      onDragOver,
+      onAnimationStart,
+      onAnimationEnd,
+      onAnimationIteration,
+      ...htmlProps
+    } = props
+    
     return (
       <motion.button
         ref={ref}
@@ -33,7 +48,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         whileHover={!disabled && !loading ? { scale: 1.02 } : {}}
         whileTap={!disabled && !loading ? { scale: 0.98 } : {}}
         disabled={disabled || loading}
-        {...props}
+        {...htmlProps}
       >
         {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
         {children}

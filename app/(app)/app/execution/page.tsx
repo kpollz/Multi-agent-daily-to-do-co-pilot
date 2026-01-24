@@ -106,7 +106,7 @@ export default function ExecutionPage() {
             <AnimatePresence mode="popLayout">
               {tasks.map((task, index) => {
                 const isActive = activeTask?.id === task.id && !task.completed
-                const isCompleted = task.completed
+                const isCompleted = task.completed ?? false
                 
                 return (
                   <motion.div

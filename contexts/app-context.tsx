@@ -7,7 +7,7 @@ interface AppContextType {
   phase: AppPhase
   setPhase: (phase: AppPhase) => void
   tasks: Task[]
-  setTasks: (tasks: Task[]) => void
+  setTasks: (tasks: Task[] | ((prev: Task[]) => Task[])) => void
   updateTask: (taskId: string, updates: Partial<Task>) => void
   summary: string
   setSummary: (summary: string) => void
