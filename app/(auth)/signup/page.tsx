@@ -8,9 +8,11 @@ import Input from '@components/ui/input'
 import Button from '@components/ui/button'
 import { apiClient } from '@/lib/api-client'
 import Link from 'next/link'
+import { useAuth } from '@contexts/auth-context'
 
 export default function SignupPage() {
   const router = useRouter()
+  const { login: setSession } = useAuth()
   const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -31,7 +33,14 @@ export default function SignupPage() {
 
     try {
       const user = await apiClient.signup(email, username, password)
-      localStorage.setItem('user', JSON.stringify(user))
+      setSession({
+        user: {
+          id: String(user.id),
+          email: user.email,
+          name: user.username,
+        },
+        token: '',
+      })
       router.push('/app')
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Signup failed')

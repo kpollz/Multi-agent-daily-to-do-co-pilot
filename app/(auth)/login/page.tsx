@@ -7,9 +7,11 @@ import { Sparkles } from 'lucide-react'
 import Input from '@components/ui/input'
 import Button from '@components/ui/button'
 import { apiClient } from '@/lib/api-client'
+import { useAuth } from '@contexts/auth-context'
 
 export default function LoginPage() {
   const router = useRouter()
+  const { login: setSession } = useAuth()
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
@@ -22,7 +24,14 @@ export default function LoginPage() {
     
     try {
       const response = await apiClient.login(username, password)
-      localStorage.setItem('user', JSON.stringify(response.user))
+      setSession({
+        user: {
+          id: String(response.user.id),
+          email: response.user.email,
+          name: response.user.username,
+        },
+        token: response.access_token,
+      })
       router.push('/app')
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Login failed')

@@ -2,7 +2,6 @@
 
 import { createContext, useContext, useState, useEffect, ReactNode } from 'react'
 import { Session } from '@lib/types'
-import { getCurrentSession } from '@lib/mock'
 
 interface AuthContextType {
   session: Session | null
@@ -18,17 +17,38 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [isLoading, setIsLoading] = useState(true)
   
   useEffect(() => {
-    const currentSession = getCurrentSession()
-    setSession(currentSession)
+    // Try to load user from localStorage (set by API client after login)
+    const user = localStorage.getItem('user')
+    if (user) {
+      try {
+        const userData = JSON.parse(user)
+        const token = localStorage.getItem('access_token') || ''
+        setSession({
+          user: {
+            id: userData.id,
+            email: userData.email,
+            name: userData.username,
+          },
+          token,
+        })
+      } catch (err) {
+        console.error('Failed to parse user from localStorage:', err)
+      }
+    }
     setIsLoading(false)
   }, [])
   
   const login = (newSession: Session) => {
     setSession(newSession)
+    if (newSession.user) {
+      localStorage.setItem('user', JSON.stringify(newSession.user))
+    }
   }
   
   const logout = () => {
     setSession(null)
+    localStorage.removeItem('user')
+    localStorage.removeItem('access_token')
   }
   
   if (isLoading) {
