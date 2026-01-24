@@ -6,13 +6,11 @@ import { motion } from 'framer-motion'
 import { Sparkles } from 'lucide-react'
 import Input from '@components/ui/input'
 import Button from '@components/ui/button'
-import { login } from '@lib/mock'
-import { useAuth } from '@contexts/auth-context'
+import { apiClient } from '@/lib/api-client'
 
 export default function LoginPage() {
   const router = useRouter()
-  const { login: setSession } = useAuth()
-  const [email, setEmail] = useState('')
+  const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [isLoading, setIsLoading] = useState(false)
@@ -23,8 +21,8 @@ export default function LoginPage() {
     setIsLoading(true)
     
     try {
-      const session = await login({ email, password })
-      setSession(session)
+      const response = await apiClient.login(username, password)
+      localStorage.setItem('user', JSON.stringify(response.user))
       router.push('/app')
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Login failed')
@@ -62,11 +60,11 @@ export default function LoginPage() {
           <div className="bg-surface border border-border rounded-lg p-6">
             <form onSubmit={handleSubmit} className="space-y-4">
               <Input
-                type="email"
-                label="Email"
-                placeholder="Enter your email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                type="text"
+                label="Username"
+                placeholder="Enter your username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
                 required
               />
               <Input
@@ -93,7 +91,7 @@ export default function LoginPage() {
           </div>
           
           <p className="text-center text-sm text-textSecondary mt-6">
-            Demo account: user@example.com / password
+            Don't have an account? <a href="/signup" className="text-primary hover:underline">Sign up</a>
           </p>
         </motion.div>
       </motion.div>

@@ -6,16 +6,15 @@ import { motion } from 'framer-motion'
 import { Sparkles, ArrowLeft } from 'lucide-react'
 import Input from '@components/ui/input'
 import Button from '@components/ui/button'
-import { signup } from '@lib/mock'
-import { useAuth } from '@contexts/auth-context'
+import { apiClient } from '@/lib/api-client'
 import Link from 'next/link'
 
 export default function SignupPage() {
   const router = useRouter()
-  const { login: setSession } = useAuth()
-  const [name, setName] = useState('')
+  const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
   const [error, setError] = useState('')
   const [isLoading, setIsLoading] = useState(false)
   
@@ -24,9 +23,15 @@ export default function SignupPage() {
     setError('')
     setIsLoading(true)
     
+    if (password !== confirmPassword) {
+      setError('Passwords do not match')
+      setIsLoading(false)
+      return
+    }
+
     try {
-      const session = await signup({ email, password, name })
-      setSession(session)
+      const user = await apiClient.signup(email, username, password)
+      localStorage.setItem('user', JSON.stringify(user))
       router.push('/app')
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Signup failed')
@@ -65,10 +70,10 @@ export default function SignupPage() {
             <form onSubmit={handleSubmit} className="space-y-4">
               <Input
                 type="text"
-                label="Name"
-                placeholder="Enter your name"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
+                label="Username"
+                placeholder="Choose a username"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
                 required
               />
               <Input
@@ -85,6 +90,14 @@ export default function SignupPage() {
                 placeholder="Create a password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+              <Input
+                type="password"
+                label="Confirm Password"
+                placeholder="Confirm your password"
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
                 required
               />
               {error && (
